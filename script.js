@@ -100,6 +100,12 @@ const els = {
 
 const THEME_KEY = 'model-toolkit-theme';
 
+function hasLaunchUrl(url) {
+  if (typeof url !== 'string') return false;
+  const trimmed = url.trim();
+  return trimmed.length > 0 && trimmed !== '#';
+}
+
 
 function renderSprites() {
   const field = document.getElementById('spriteField');
@@ -178,6 +184,10 @@ function matchesFilters(tool) {
 }
 
 function openTool(tool) {
+  const launchMarkup = hasLaunchUrl(tool.url)
+    ? `<a class="link" href="${tool.url}" target="_blank" rel="noopener noreferrer">Open Tool ↗</a>`
+    : '<span class="muted">Launch unavailable (coming soon)</span>';
+
   els.modalBody.innerHTML = `
     <h3>${tool.name}</h3>
     <p class="muted">${tool.description}</p>
@@ -191,7 +201,7 @@ function openTool(tool) {
       ${tool.tags.map((tag) => `<span class="pill">${tag}</span>`).join('')}
     </div>
     <p class="muted" style="margin-top: 1rem;">Future enhancement: role-based visibility and personalized recommendations after Okta / Azure AD sign-in.</p>
-    <a class="link" href="${tool.url}" target="_blank" rel="noopener noreferrer">Open Tool ↗</a>
+    ${launchMarkup}
   `;
   els.toolModal.showModal();
 }
@@ -207,6 +217,10 @@ function render() {
   }
 
   filtered.forEach((tool) => {
+    const launchMarkup = hasLaunchUrl(tool.url)
+      ? `<a class="link" href="${tool.url}" target="_blank" rel="noopener noreferrer">Launch ↗</a>`
+      : '<span class="muted" aria-label="Launch unavailable">Coming soon</span>';
+
     const card = document.createElement('article');
     card.className = 'tool-card';
     card.innerHTML = `
@@ -219,7 +233,7 @@ function render() {
       </div>
       <p>${tool.description}</p>
       <footer>
-        <a class="link" href="${tool.url}" target="_blank" rel="noopener noreferrer">Launch ↗</a>
+        ${launchMarkup}
         <button class="link-btn" type="button">Details</button>
       </footer>
     `;

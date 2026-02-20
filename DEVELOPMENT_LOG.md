@@ -4,11 +4,17 @@ This file is the persistent artifact for tracking important implementation knowl
 
 ## Versioning
 
-- Current version: `0.1.1`
+- Current version: `0.1.2`
 - Versioning strategy: semantic-ish patch increments for day-to-day updates (`major.minor.patch`).
 - Rule: each meaningful development change adds one entry and increments patch.
 
 ## Entries
+
+
+### v0.1.2
+- **Summary:** Improved launch behavior for unavailable tools by replacing placeholder launch links with clear "Coming soon" messaging.
+- **Knowledge:** Only tools with real URLs render clickable Launch/Open Tool links; placeholder (`#`) entries are displayed as unavailable to avoid confusing no-op clicks.
+- **Date:** 2026-02-20
 
 ### v0.1.1
 - **Summary:** Removed user-facing development log UI; retained repository-only artifact workflow.
