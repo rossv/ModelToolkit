@@ -98,6 +98,21 @@ const els = {
   modalBody: document.getElementById('modalBody'),
 };
 
+const THEME_KEY = 'model-toolkit-theme';
+
+function applyTheme(theme) {
+  const nextTheme = theme === 'dark' ? 'dark' : 'light';
+  document.documentElement.dataset.theme = nextTheme;
+  els.themeToggle.setAttribute('aria-pressed', String(nextTheme === 'dark'));
+  localStorage.setItem(THEME_KEY, nextTheme);
+}
+
+function initTheme() {
+  const savedTheme = localStorage.getItem(THEME_KEY);
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(savedTheme ?? (prefersDark ? 'dark' : 'light'));
+}
+
 const getUnique = (key) => [...new Set(tools.flatMap((t) => (Array.isArray(t[key]) ? t[key] : [t[key]])))]
   .sort((a, b) => a.localeCompare(b));
 
@@ -205,8 +220,8 @@ els.clearFilters.addEventListener('click', () => {
 });
 
 els.themeToggle.addEventListener('click', () => {
-  const html = document.documentElement;
-  html.dataset.theme = html.dataset.theme === 'light' ? 'dark' : 'light';
+  const current = document.documentElement.dataset.theme;
+  applyTheme(current === 'light' ? 'dark' : 'light');
 });
 
 els.authBtn.addEventListener('click', () => {
@@ -218,4 +233,5 @@ els.closeHelpModal.addEventListener('click', () => els.helpModal.close());
 els.closeToolModal.addEventListener('click', () => els.toolModal.close());
 
 populateFilters();
+initTheme();
 render();
