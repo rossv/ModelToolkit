@@ -186,7 +186,7 @@ const state = {
 };
 
 const els = {
-  toolGrid: document.getElementById('toolGrid'),
+  toolSections: document.getElementById('toolSections'),
   resultCount: document.getElementById('resultCount'),
   searchInput: document.getElementById('searchInput'),
   typeFilters: document.getElementById('typeFilters'),
@@ -204,6 +204,34 @@ const els = {
 };
 
 const THEME_KEY = 'model-toolkit-theme';
+
+
+const SECTION_DEFS = [
+  {
+    key: 'web',
+    title: 'Web Tools',
+    subtitle: 'Browser-based tools with instant access and no local install.',
+    className: 'section-web',
+    matchesTool: (tool) => tool.type === 'Web App',
+    matchesTypeFilter: (type) => type === 'Web App',
+  },
+  {
+    key: 'local',
+    title: 'Local Tools',
+    subtitle: 'Apps and scripts intended for local workflows and batch operations.',
+    className: 'section-local',
+    matchesTool: (tool) => tool.type === 'Downloadable App' || tool.type === 'Installable Script',
+    matchesTypeFilter: (type) => type === 'Downloadable App' || type === 'Installable Script',
+  },
+  {
+    key: 'third-party',
+    title: 'Third-Party Tools',
+    subtitle: 'Trusted external tools maintained by partners and the wider community.',
+    className: 'section-third-party',
+    matchesTool: (tool) => tool.type === 'Third-Party Web Tool',
+    matchesTypeFilter: (type) => type === 'Third-Party Web Tool',
+  },
+];
 
 
 function renderSprites() {
@@ -321,42 +349,71 @@ function render() {
   const filtered = tools.filter(matchesFilters);
   els.resultCount.textContent = String(filtered.length);
 
-  els.toolGrid.innerHTML = '';
+  const hasTypeFilter = state.types.size > 0;
+  const visibleSections = SECTION_DEFS.filter((section) => (
+    !hasTypeFilter || [...state.types].some((type) => section.matchesTypeFilter(type))
+  ));
+
+  els.toolSections.innerHTML = '';
+
   if (filtered.length === 0) {
-    els.toolGrid.innerHTML = '<p class="muted">No tools match your current filters. Try clearing filters.</p>';
+    els.toolSections.innerHTML = '<p class="muted">No tools match your current filters. Try clearing filters.</p>';
     return;
   }
 
-  filtered.forEach((tool) => {
-    const card = document.createElement('article');
-    card.className = 'tool-card';
-    const launchMarkup = tool.url
-      ? `<a class="link" href="${tool.url}" target="_blank" rel="noopener noreferrer">Launch ↗</a>`
-      : '<span class="muted" aria-label="Launch link unavailable">Coming soon</span>';
+  visibleSections.forEach((section) => {
+    const sectionTools = filtered.filter((tool) => section.matchesTool(tool));
+    if (sectionTools.length === 0) return;
 
-    card.innerHTML = `
-      <div>
-        <h4>${tool.name}</h4>
-        <div class="meta-row">
-          <span class="pill">${tool.type}</span>
-          <span class="pill">${tool.audience}</span>
-        </div>
-      </div>
-      <p>${tool.description}</p>
-      <footer>
-        ${launchMarkup}
-        <button class="link-btn" type="button">Details</button>
-      </footer>
+    const sectionEl = document.createElement('section');
+    sectionEl.className = `tool-section ${section.className}`;
+    sectionEl.innerHTML = `
+      <header class="tool-section-head">
+        <h4>${section.title}</h4>
+        <p>${section.subtitle}</p>
+      </header>
+      <div class="tool-grid" data-section-grid></div>
     `;
 
-    const previewSection = createPreviewCarousel(tool.previews || []);
-    if (previewSection) {
-      card.prepend(previewSection);
-    }
+    const sectionGrid = sectionEl.querySelector('[data-section-grid]');
 
-    card.querySelector('.link-btn').addEventListener('click', () => openTool(tool));
-    els.toolGrid.appendChild(card);
+    sectionTools.forEach((tool) => {
+      const card = document.createElement('article');
+      card.className = 'tool-card';
+      const launchMarkup = tool.url
+        ? `<a class="link" href="${tool.url}" target="_blank" rel="noopener noreferrer">Launch ↗</a>`
+        : '<span class="muted" aria-label="Launch link unavailable">Coming soon</span>';
+
+      card.innerHTML = `
+        <div>
+          <h4>${tool.name}</h4>
+          <div class="meta-row">
+            <span class="pill">${tool.type}</span>
+            <span class="pill">${tool.audience}</span>
+          </div>
+        </div>
+        <p>${tool.description}</p>
+        <footer>
+          ${launchMarkup}
+          <button class="link-btn" type="button">Details</button>
+        </footer>
+      `;
+
+      const previewSection = createPreviewCarousel(tool.previews || []);
+      if (previewSection) {
+        card.prepend(previewSection);
+      }
+
+      card.querySelector('.link-btn').addEventListener('click', () => openTool(tool));
+      sectionGrid.appendChild(card);
+    });
+
+    els.toolSections.appendChild(sectionEl);
   });
+
+  if (!els.toolSections.childElementCount) {
+    els.toolSections.innerHTML = '<p class="muted">No tools match your current filters. Try clearing filters.</p>';
+  }
 }
 
 function createPreviewCarousel(previews) {
