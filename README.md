@@ -16,3 +16,8 @@ This repository now includes a polished front-end landing page that provides:
 ### Run locally
 
 Open `index.html` in a browser, or serve with a local static server.
+
+## Development change log
+
+Project change history and implementation knowledge are tracked in `DEVELOPMENT_LOG.md` and updated with each meaningful commit.
+
