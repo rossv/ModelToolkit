@@ -23,9 +23,18 @@
           </div>
         </div>
         <div class="header-actions">
-          <button id="themeToggle" class="btn btn-ghost" aria-label="Toggle dark mode">
-            <span class="icon">◐</span>
-            <span>Theme</span>
+          <button
+            id="themeToggle"
+            class="theme-toggle"
+            type="button"
+            aria-label="Toggle light and dark mode"
+            aria-pressed="false"
+          >
+            <span class="theme-toggle-track" aria-hidden="true">
+              <span class="theme-toggle-icon sun">☀</span>
+              <span class="theme-toggle-icon moon">☾</span>
+              <span class="theme-toggle-thumb"></span>
+            </span>
           </button>
           <button id="authBtn" class="btn btn-primary" aria-label="Sign in (coming soon)">
             Sign in (Soon)

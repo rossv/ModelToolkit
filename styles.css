@@ -95,6 +95,63 @@ h1 {
   gap: 0.6rem;
 }
 
+.theme-toggle {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.theme-toggle-track {
+  width: 58px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface-2) 82%, var(--surface));
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 7px;
+  position: relative;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.theme-toggle-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  position: absolute;
+  left: 4px;
+  top: 3px;
+  box-shadow: 0 2px 8px rgba(15, 24, 39, 0.25);
+  transition: transform 180ms ease;
+}
+
+.theme-toggle-icon {
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  z-index: 1;
+  line-height: 1;
+}
+
+.theme-toggle-icon.sun {
+  justify-self: start;
+}
+
+.theme-toggle-icon.moon {
+  justify-self: end;
+}
+
+html[data-theme='dark'] .theme-toggle-thumb {
+  transform: translateX(26px);
+}
+
+.theme-toggle:focus-visible .theme-toggle-track {
+  outline: 2px solid color-mix(in srgb, var(--brand) 75%, white);
+  outline-offset: 2px;
+}
+
 .btn {
   border-radius: 10px;
   padding: 0.6rem 0.9rem;
