@@ -283,6 +283,10 @@ function matchesFilters(tool) {
 }
 
 function openTool(tool) {
+  const launchMarkup = tool.url
+    ? '<a class="link" href="' + tool.url + '" target="_blank" rel="noopener noreferrer">Open Tool ↗</a>'
+    : '<p class="muted" style="margin-top: 1rem;">Launch link coming soon for this tool.</p>';
+
   els.modalBody.innerHTML = `
     <h3>${tool.name}</h3>
     <p class="muted">${tool.description}</p>
@@ -296,7 +300,7 @@ function openTool(tool) {
       ${tool.tags.map((tag) => `<span class="pill">${tag}</span>`).join('')}
     </div>
     <p class="muted" style="margin-top: 1rem;">Future enhancement: role-based visibility and personalized recommendations after Okta / Azure AD sign-in.</p>
-    <a class="link" href="${tool.url}" target="_blank" rel="noopener noreferrer">Open Tool ↗</a>
+    ${launchMarkup}
   `;
   els.toolModal.showModal();
 }
@@ -314,6 +318,9 @@ function render() {
   filtered.forEach((tool) => {
     const card = document.createElement('article');
     card.className = 'tool-card';
+    const launchMarkup = tool.url
+      ? `<a class="link" href="${tool.url}" target="_blank" rel="noopener noreferrer">Launch ↗</a>`
+      : '<span class="muted" aria-label="Launch link unavailable">Coming soon</span>';
 
     card.innerHTML = `
       <div>
@@ -325,7 +332,7 @@ function render() {
       </div>
       <p>${tool.description}</p>
       <footer>
-        <a class="link" href="${tool.url}" target="_blank" rel="noopener noreferrer">Launch ↗</a>
+        ${launchMarkup}
         <button class="link-btn" type="button">Details</button>
       </footer>
     `;
