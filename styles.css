@@ -421,6 +421,19 @@ button.link-btn {
   max-width: 680px;
   padding: 1rem;
   position: relative;
+  color: var(--text);
+}
+
+html[data-theme='dark'] .modal-card {
+  background: color-mix(in srgb, var(--surface) 96%, black);
+  border-color: color-mix(in srgb, var(--border) 82%, white);
+}
+
+.modal-card p,
+.modal-card li,
+.modal-card h3,
+.modal-card h4 {
+  color: var(--text);
 }
 
 .close-btn {
