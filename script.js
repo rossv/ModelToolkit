@@ -100,6 +100,31 @@ const els = {
 
 const THEME_KEY = 'model-toolkit-theme';
 
+
+function renderSprites() {
+  const field = document.getElementById('spriteField');
+  if (!field || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const spriteCount = Math.max(10, Math.min(24, Math.floor(window.innerWidth / 72)));
+  const frag = document.createDocumentFragment();
+
+  for (let i = 0; i < spriteCount; i += 1) {
+    const sprite = document.createElement('span');
+    const size = 4 + Math.random() * 10;
+    sprite.className = 'sprite';
+    sprite.style.width = `${size.toFixed(1)}px`;
+    sprite.style.height = `${size.toFixed(1)}px`;
+    sprite.style.left = `${(Math.random() * 100).toFixed(2)}%`;
+    sprite.style.top = `${(Math.random() * 100).toFixed(2)}%`;
+    sprite.style.animationDuration = `${(10 + Math.random() * 16).toFixed(2)}s`;
+    sprite.style.animationDelay = `${(-Math.random() * 14).toFixed(2)}s`;
+    sprite.style.opacity = `${(0.08 + Math.random() * 0.2).toFixed(2)}`;
+    frag.appendChild(sprite);
+  }
+
+  field.replaceChildren(frag);
+}
+
 function applyTheme(theme) {
   const nextTheme = theme === 'dark' ? 'dark' : 'light';
   document.documentElement.dataset.theme = nextTheme;
@@ -234,4 +259,7 @@ els.closeToolModal.addEventListener('click', () => els.toolModal.close());
 
 populateFilters();
 initTheme();
+renderSprites();
 render();
+
+window.addEventListener('resize', renderSprites);
