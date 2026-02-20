@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Model Toolkit Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="top-bar">
+        <div class="brand-wrap">
+          <div class="brand-logo">MT</div>
+          <div>
+            <p class="eyebrow">Hydrology & Hydraulics</p>
+            <h1>Model Toolkit</h1>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button id="themeToggle" class="btn btn-ghost" aria-label="Toggle dark mode">
+            <span class="icon">◐</span>
+            <span>Theme</span>
+          </button>
+          <button id="authBtn" class="btn btn-primary" aria-label="Sign in (coming soon)">
+            Sign in (Soon)
+          </button>
+          <button id="helpBtn" class="btn btn-secondary" aria-haspopup="dialog">Help & Credits</button>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div>
+          <h2>Find the right modeling tool in seconds.</h2>
+          <p>
+            Explore web apps, downloadable utilities, installable scripts, and trusted third-party resources.
+            Built for everyone from first-time modelers to advanced engineers.
+          </p>
+        </div>
+        <div class="hero-badges">
+          <span>SWMM</span>
+          <span>Hydrology</span>
+          <span>Hydraulics</span>
+          <span>Data QA/QC</span>
+          <span>Design Support</span>
+        </div>
+      </section>
+
+      <main class="layout">
+        <aside class="filters-panel" aria-label="Tool filters">
+          <div class="search-block">
+            <label for="searchInput">Search tools</label>
+            <input id="searchInput" type="search" placeholder="Try: rainfall, SWMM, digitizer..." />
+          </div>
+
+          <div class="filter-group">
+            <h3>Type</h3>
+            <div id="typeFilters" class="chips"></div>
+          </div>
+
+          <div class="filter-group">
+            <h3>Audience</h3>
+            <div id="audienceFilters" class="chips"></div>
+          </div>
+
+          <div class="filter-group">
+            <h3>Discipline</h3>
+            <div id="tagFilters" class="chips"></div>
+          </div>
+
+          <button id="clearFilters" class="btn btn-ghost full-width">Clear filters</button>
+        </aside>
+
+        <section class="content-panel" aria-live="polite">
+          <div class="content-head">
+            <h3>Tool Directory</h3>
+            <p><span id="resultCount">0</span> tools available</p>
+          </div>
+          <div id="toolGrid" class="tool-grid"></div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="toolModal" class="modal">
+      <article class="modal-card">
+        <button class="close-btn" id="closeToolModal" aria-label="Close">×</button>
+        <div id="modalBody"></div>
+      </article>
+    </dialog>
+
+    <dialog id="helpModal" class="modal">
+      <article class="modal-card">
+        <button class="close-btn" id="closeHelpModal" aria-label="Close">×</button>
+        <h3>Help & Credits</h3>
+        <p>
+          The Model Toolkit is a curated directory to help users quickly discover H&H tools by purpose,
+          platform, and experience level.
+        </p>
+        <ul>
+          <li>Designed for novice to advanced modelers.</li>
+          <li>Current access is open. Planned enterprise authentication: Okta and Azure AD.</li>
+          <li>Includes tools created by the Model Toolkit maintainer and trusted third-party resources.</li>
+        </ul>
+        <p class="muted">Credits: Product vision and tool ecosystem by repository owner and contributors.</p>
+      </article>
+    </dialog>
+
+    <script src="script.js"></script>
+  </body>
+</html>
