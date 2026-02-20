@@ -38,7 +38,7 @@ const tools = [
         caption: 'Review extracted points with visual QA confidence overlays.',
       },
     ],
-    url: '#',
+    url: 'https://rossv.github.io/plotdigitizer/',
     owner: 'Model Toolkit',
   },
   {
@@ -59,7 +59,7 @@ const tools = [
         caption: 'Queue multi-station exports in model-ready file formats.',
       },
     ],
-    url: '#',
+    url: 'https://rossv.github.io/rainfalldownload/',
     owner: 'Model Toolkit',
   },
   {
