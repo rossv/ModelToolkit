@@ -26,3 +26,7 @@ This repo is configured for automatic GitHub Pages deployment through GitHub Act
 3. The workflow at `.github/workflows/deploy-pages.yml` will publish the site.
 
 If you use a custom domain, add a `CNAME` file at the repository root before deployment.
+## Development change log
+
+Project change history and implementation knowledge are tracked in `DEVELOPMENT_LOG.md` and updated with each meaningful commit.
+
