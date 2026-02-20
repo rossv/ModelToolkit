@@ -16,3 +16,13 @@ This repository now includes a polished front-end landing page that provides:
 ### Run locally
 
 Open `index.html` in a browser, or serve with a local static server.
+
+## Deploy to GitHub Pages
+
+This repo is configured for automatic GitHub Pages deployment through GitHub Actions.
+
+1. Push changes to the `main` branch.
+2. In GitHub, go to **Settings → Pages** and set **Source** to **GitHub Actions**.
+3. The workflow at `.github/workflows/deploy-pages.yml` will publish the site.
+
+If you use a custom domain, add a `CNAME` file at the repository root before deployment.
