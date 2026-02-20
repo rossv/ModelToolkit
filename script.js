@@ -17,7 +17,7 @@ const tools = [
         caption: 'Preview generated rainfall intensity patterns instantly.',
       },
     ],
-    url: '#',
+    url: 'https://rossv.github.io/designstorms/',
     owner: 'Model Toolkit',
   },
   {
@@ -342,7 +342,7 @@ function render() {
       card.prepend(previewSection);
     }
 
-    card.querySelector('button').addEventListener('click', () => openTool(tool));
+    card.querySelector('.link-btn').addEventListener('click', () => openTool(tool));
     els.toolGrid.appendChild(card);
   });
 }
