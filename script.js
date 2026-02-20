@@ -4,6 +4,7 @@ const tools = [
     type: 'Web App',
     audience: 'Beginner',
     tags: ['Rainfall', 'Design', 'SWMM'],
+    software: ['PCSWMM'],
     description: 'Generate design storm hyetographs quickly with defensible assumptions and clean exports.',
     url: '#',
     owner: 'Model Toolkit',
@@ -13,6 +14,7 @@ const tools = [
     type: 'Downloadable App',
     audience: 'Intermediate',
     tags: ['Data', 'QA/QC', 'Visualization'],
+    software: ['Any'],
     description: 'Extract points from legacy figures and scanned plots for model calibration and validation.',
     url: '#',
     owner: 'Model Toolkit',
@@ -22,6 +24,7 @@ const tools = [
     type: 'Installable Script',
     audience: 'Beginner',
     tags: ['Rainfall', 'Automation'],
+    software: ['PCSWMM', 'Infoworks ICM', 'HEC-RAS', 'Any'],
     description: 'Download and organize rainfall data from common sources in model-ready formats.',
     url: '#',
     owner: 'Model Toolkit',
@@ -31,6 +34,7 @@ const tools = [
     type: 'Third-Party Web Tool',
     audience: 'Advanced',
     tags: ['SWMM', 'Benchmarking'],
+    software: ['PCSWMM'],
     description: 'Compare SWMM model behavior and outcomes across runs to spot meaningful differences.',
     url: 'https://meyerd851-lab.github.io/SWMM_Comparison/',
     owner: 'Third-party',
@@ -40,6 +44,7 @@ const tools = [
     type: 'Third-Party Web Tool',
     audience: 'Intermediate',
     tags: ['SWMM', 'Reporting'],
+    software: ['PCSWMM'],
     description: 'Summarize SWMM report outputs and identify actionable performance indicators.',
     url: 'https://swmm5rptstats.com/',
     owner: 'Third-party',
@@ -49,6 +54,7 @@ const tools = [
     type: 'Installable Script',
     audience: 'Intermediate',
     tags: ['Automation', 'QA/QC'],
+    software: ['Infoworks ICM', 'HEC-RAS'],
     description: 'Organize scenarios and model run artifacts for repeatable review and sign-off workflows.',
     url: '#',
     owner: 'Model Toolkit',
@@ -58,6 +64,7 @@ const tools = [
     type: 'Web App',
     audience: 'Beginner',
     tags: ['Hydraulics', 'Design'],
+    software: ['HEC-RAS'],
     description: 'Estimate culvert capacity with an approachable interface for rapid screening.',
     url: '#',
     owner: 'Model Toolkit',
@@ -67,6 +74,7 @@ const tools = [
     type: 'Downloadable App',
     audience: 'Advanced',
     tags: ['Data', 'Automation', 'QA/QC'],
+    software: ['Any'],
     description: 'Diagnose and repair gaps in hydromet time-series prior to model ingestion.',
     url: '#',
     owner: 'Model Toolkit',
@@ -78,6 +86,7 @@ const state = {
   types: new Set(),
   audiences: new Set(),
   tags: new Set(),
+  software: new Set(),
 };
 
 const els = {
@@ -87,6 +96,7 @@ const els = {
   typeFilters: document.getElementById('typeFilters'),
   audienceFilters: document.getElementById('audienceFilters'),
   tagFilters: document.getElementById('tagFilters'),
+  softwareFilters: document.getElementById('softwareFilters'),
   clearFilters: document.getElementById('clearFilters'),
   themeToggle: document.getElementById('themeToggle'),
   authBtn: document.getElementById('authBtn'),
@@ -163,18 +173,23 @@ function populateFilters() {
   getUnique('type').forEach((t) => makeChip(t, state.types, els.typeFilters));
   getUnique('audience').forEach((a) => makeChip(a, state.audiences, els.audienceFilters));
   getUnique('tags').forEach((tag) => makeChip(tag, state.tags, els.tagFilters));
+  getUnique('software').forEach((value) => makeChip(value, state.software, els.softwareFilters));
 }
 
 function matchesFilters(tool) {
   const q = state.search.toLowerCase();
   const inSearch =
     !q ||
-    [tool.name, tool.description, tool.type, tool.audience, ...tool.tags].join(' ').toLowerCase().includes(q);
+    [tool.name, tool.description, tool.type, tool.audience, ...tool.tags, ...tool.software]
+      .join(' ')
+      .toLowerCase()
+      .includes(q);
 
   const inType = state.types.size === 0 || state.types.has(tool.type);
   const inAudience = state.audiences.size === 0 || state.audiences.has(tool.audience);
   const inTags = state.tags.size === 0 || tool.tags.some((tag) => state.tags.has(tag));
-  return inSearch && inType && inAudience && inTags;
+  const inSoftware = state.software.size === 0 || tool.software.some((item) => state.software.has(item));
+  return inSearch && inType && inAudience && inTags && inSoftware;
 }
 
 function openTool(tool) {
@@ -189,6 +204,10 @@ function openTool(tool) {
     <h4>Disciplines</h4>
     <div class="meta-row">
       ${tool.tags.map((tag) => `<span class="pill">${tag}</span>`).join('')}
+    </div>
+    <h4>Software</h4>
+    <div class="meta-row">
+      ${tool.software.map((item) => `<span class="pill">${item}</span>`).join('')}
     </div>
     <p class="muted" style="margin-top: 1rem;">Future enhancement: role-based visibility and personalized recommendations after Okta / Azure AD sign-in.</p>
     <a class="link" href="${tool.url}" target="_blank" rel="noopener noreferrer">Open Tool ↗</a>
@@ -239,6 +258,7 @@ els.clearFilters.addEventListener('click', () => {
   state.types.clear();
   state.audiences.clear();
   state.tags.clear();
+  state.software.clear();
   els.searchInput.value = '';
   document.querySelectorAll('.chip').forEach((chip) => chip.classList.remove('active'));
   render();
