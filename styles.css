@@ -4,9 +4,9 @@
   --surface-2: #eef3f8;
   --text: #142137;
   --text-soft: #4a5e7b;
-  --brand: #1f4f8f;
-  --brand-2: #2e76ca;
-  --accent: #f28a17;
+  --brand: #3bb54a;
+  --brand-2: #2f9b3d;
+  --accent: #63c96e;
   --border: #d8e1ec;
   --shadow: 0 12px 30px rgba(22, 40, 67, 0.08);
 }
@@ -17,9 +17,9 @@ html[data-theme='dark'] {
   --surface-2: #202c45;
   --text: #e6edf8;
   --text-soft: #b2c0da;
-  --brand: #67a6ff;
-  --brand-2: #8ec0ff;
-  --accent: #ffb451;
+  --brand: #58d36a;
+  --brand-2: #3bb54a;
+  --accent: #7ce087;
   --border: #2c3a57;
   --shadow: 0 12px 30px rgba(2, 8, 24, 0.45);
 }
