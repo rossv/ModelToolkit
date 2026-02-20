@@ -44,6 +44,10 @@ body {
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 16%, color-mix(in srgb, var(--brand) 16%, transparent), transparent 34%),
+    radial-gradient(circle at 85% 82%, color-mix(in srgb, #78b7ff 20%, transparent), transparent 42%),
+    linear-gradient(160deg, color-mix(in srgb, var(--bg) 88%, transparent), color-mix(in srgb, var(--surface-2) 78%, transparent));
 }
 
 .sprite-field {
@@ -77,12 +81,22 @@ body {
 .sprite {
   position: absolute;
   border-radius: 50%;
-  opacity: 0.24;
-  background: color-mix(in srgb, var(--accent) 55%, white);
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent);
+  opacity: 0.32;
+  background: var(--sprite-color, color-mix(in srgb, var(--accent) 55%, white));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--sprite-color, var(--accent)) 38%, transparent);
   animation-name: spriteDrift;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+}
+
+.sprite--ring {
+  background: transparent;
+  border: 1px solid var(--sprite-color, color-mix(in srgb, var(--accent) 60%, white));
+}
+
+.sprite--diamond {
+  border-radius: 2px;
+  transform: rotate(45deg);
 }
 
 .app-shell {
@@ -605,7 +619,11 @@ html[data-theme='dark'] .modal-card {
   }
 
   .bg-glow {
-    opacity: 0.22;
+    opacity: 0.24;
+  }
+
+  .sprite {
+    opacity: 0.24;
   }
 }
 

@@ -208,22 +208,34 @@ const THEME_KEY = 'model-toolkit-theme';
 
 function renderSprites() {
   const field = document.getElementById('spriteField');
-  if (!field || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!field) return;
 
-  const spriteCount = Math.max(10, Math.min(24, Math.floor(window.innerWidth / 72)));
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    field.replaceChildren();
+    return;
+  }
+
+  const spriteCount = Math.max(12, Math.min(30, Math.floor(window.innerWidth / 58)));
+  const variants = ['sprite', 'sprite sprite--ring', 'sprite sprite--diamond'];
+  const colors = [
+    'color-mix(in srgb, var(--accent) 62%, white)',
+    'color-mix(in srgb, #7dc2ff 52%, white)',
+    'color-mix(in srgb, var(--brand) 54%, white)',
+  ];
   const frag = document.createDocumentFragment();
 
   for (let i = 0; i < spriteCount; i += 1) {
     const sprite = document.createElement('span');
-    const size = 4 + Math.random() * 10;
-    sprite.className = 'sprite';
+    const size = 5 + Math.random() * 11;
+    sprite.className = variants[i % variants.length];
     sprite.style.width = `${size.toFixed(1)}px`;
     sprite.style.height = `${size.toFixed(1)}px`;
     sprite.style.left = `${(Math.random() * 100).toFixed(2)}%`;
     sprite.style.top = `${(Math.random() * 100).toFixed(2)}%`;
-    sprite.style.animationDuration = `${(10 + Math.random() * 16).toFixed(2)}s`;
+    sprite.style.animationDuration = `${(11 + Math.random() * 15).toFixed(2)}s`;
     sprite.style.animationDelay = `${(-Math.random() * 14).toFixed(2)}s`;
-    sprite.style.opacity = `${(0.08 + Math.random() * 0.2).toFixed(2)}`;
+    sprite.style.opacity = `${(0.12 + Math.random() * 0.24).toFixed(2)}`;
+    sprite.style.setProperty('--sprite-color', colors[i % colors.length]);
     frag.appendChild(sprite);
   }
 
