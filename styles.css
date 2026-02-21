@@ -250,22 +250,6 @@ html[data-theme='dark'] .theme-toggle-thumb {
   gap: 1rem;
   margin-bottom: 1rem;
 }
-
-.hero-logo-panel {
-  min-width: 128px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-logo-panel img {
-  width: 120px;
-  height: 120px;
-  border-radius: 22px;
-  border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
-  box-shadow: 0 10px 24px rgba(15, 24, 39, 0.2);
-}
-
 .hero h2 {
   margin: 0 0 0.5rem;
   font-size: clamp(1.3rem, 2vw, 1.9rem);
@@ -666,10 +650,6 @@ html[data-theme='dark'] .modal-card {
 
   .hero {
     flex-direction: column;
-  }
-
-  .hero-logo-panel {
-    justify-content: flex-start;
   }
 
   .hero-badges {
