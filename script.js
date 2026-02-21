@@ -116,22 +116,6 @@ const tools = [
     owner: 'Model Toolkit',
   },
   {
-    name: 'Culvert Capacity Checker',
-    type: 'Web App',
-    audience: 'Beginner',
-    tags: ['Hydraulics', 'Design'],
-    description: 'Estimate culvert capacity with an approachable interface for rapid screening.',
-    previews: [
-      {
-        src: makePreviewGraphic('Capacity Inputs', 'Geometry and roughness', '#1d3557', '#457b9d'),
-        alt: 'Form for culvert dimensions, slope, and roughness',
-        caption: 'Input culvert geometry and hydraulics assumptions quickly.',
-      },
-    ],
-    url: '#',
-    owner: 'Model Toolkit',
-  },
-  {
     name: 'Time-Series Gap Filler',
     type: 'Downloadable App',
     audience: 'Advanced',
