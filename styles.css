@@ -403,17 +403,23 @@ input[type='search'] {
 }
 
 .section-web {
-  background: linear-gradient(145deg, color-mix(in srgb, #55b8ff 16%, var(--surface)), color-mix(in srgb, #6fe3ff 11%, var(--surface-2)));
+  background:
+    linear-gradient(145deg, color-mix(in srgb, #0f3558 74%, transparent), color-mix(in srgb, #2d6a91 64%, transparent)),
+    url('assets/section-bg-web.png') center / cover no-repeat;
   border-color: color-mix(in srgb, #4aaeff 42%, var(--border));
 }
 
 .section-local {
-  background: linear-gradient(145deg, color-mix(in srgb, #69cc7a 18%, var(--surface)), color-mix(in srgb, #9bdd77 12%, var(--surface-2)));
+  background:
+    linear-gradient(145deg, color-mix(in srgb, #0f3f2a 75%, transparent), color-mix(in srgb, #3b6f52 66%, transparent)),
+    url('assets/section-bg-local.png') center / cover no-repeat;
   border-color: color-mix(in srgb, #63c96e 45%, var(--border));
 }
 
 .section-third-party {
-  background: linear-gradient(145deg, color-mix(in srgb, #c58cff 18%, var(--surface)), color-mix(in srgb, #f1a8ff 11%, var(--surface-2)));
+  background:
+    linear-gradient(145deg, color-mix(in srgb, #3f215a 76%, transparent), color-mix(in srgb, #633f85 66%, transparent)),
+    url('assets/section-bg-third-party.png') center / cover no-repeat;
   border-color: color-mix(in srgb, #ba7dff 45%, var(--border));
 }
 
