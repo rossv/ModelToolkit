@@ -16,6 +16,11 @@ const tools = [
         alt: 'Hyetograph and cumulative mass curve charts with storm data table',
         caption: 'Instantly preview intensity charts and export to CSV or DAT.',
       },
+      {
+        src: 'assets/tools/designstorms_3.webp',
+        alt: 'Additional storm data and features',
+        caption: 'Review and adjust advanced design storm parameters.',
+      },
     ],
     url: 'https://rossv.github.io/designstorms/',
     owner: 'Model Toolkit',
@@ -28,14 +33,24 @@ const tools = [
     description: 'Extract points from legacy figures and scanned plots for model calibration and validation.',
     previews: [
       {
-        src: 'assets/tools/plotdigitizer_1.webp',
+        src: 'assets/tools/plot_digitizer_1.webp',
         alt: 'Plot Digitizer main interface with calibration panel and blank workspace',
         caption: 'Load any image or PDF and calibrate axes before digitizing.',
       },
       {
-        src: 'assets/tools/plotdigitizer_2.webp',
+        src: 'assets/tools/plot_digitizer_2.webp',
         alt: 'Parabolic curve loaded in the workspace ready for point capture',
         caption: 'Digitize curves manually or with the Smart Wand auto-trace tool.',
+      },
+      {
+        src: 'assets/tools/plot_digitizer_3.webp',
+        alt: 'Digitized data point extraction and refinement',
+        caption: 'Refine extracted points and adjust series parameters.',
+      },
+      {
+        src: 'assets/tools/plot_digitizer_4.webp',
+        alt: 'Exporting digitized points to standard formats',
+        caption: 'Export extracted data directly to CSV or JSON formats.',
       },
     ],
     url: 'https://rossv.github.io/plotdigitizer/',
@@ -49,14 +64,19 @@ const tools = [
     description: 'Download and organize rainfall data from common sources in model-ready formats.',
     previews: [
       {
-        src: makePreviewGraphic('Station Select', 'Region and gauge filters', '#335c67', '#fff3b0'),
+        src: 'assets/tools/rainfall_downloader_1.webp',
         alt: 'Map-based rainfall station picker with filter panel',
         caption: 'Filter stations by region and data quality metrics.',
       },
       {
-        src: makePreviewGraphic('Download Queue', 'Batch export jobs', '#264653', '#2a9d8f'),
+        src: 'assets/tools/rainfall_downloader_2.webp',
         alt: 'Queue table listing rainfall files pending export',
         caption: 'Queue multi-station exports in model-ready file formats.',
+      },
+      {
+        src: 'assets/tools/rainfall_downloader_3.webp',
+        alt: 'Rainfall data review and download processing',
+        caption: 'Review and finalize batch downloads of rainfall records.',
       },
     ],
     url: 'https://rossv.github.io/rainfalldownload/',
@@ -73,6 +93,16 @@ const tools = [
         src: 'assets/tools/swmm_comparison_1.webp',
         alt: 'SWMM Comparison App showing sections panel and map view of a drainage network',
         caption: 'Load two SWMM files and highlight added, removed, or changed elements.',
+      },
+      {
+        src: 'assets/tools/swmm_comparison_2.webp',
+        alt: 'Detailed parameter differences grid',
+        caption: 'Review detailed side-by-side property changes.',
+      },
+      {
+        src: 'assets/tools/swmm_comparison_3.webp',
+        alt: 'Summary of differences and visual maps',
+        caption: 'Visually identify and summarize network modifications.',
       },
     ],
     url: 'https://meyerd851-lab.github.io/SWMM_Comparison/',
