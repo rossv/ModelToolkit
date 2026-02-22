@@ -2,17 +2,17 @@ const tools = [
   {
     name: 'Design Storm Generator',
     type: 'Web App',
-    audience: 'Beginner',
+    platforms: ['PCSWMM', 'InfoWorks ICM', 'HEC-RAS'],
     tags: ['Rainfall', 'Design', 'SWMM'],
     description: 'Generate design storm hyetographs quickly with defensible assumptions and clean exports.',
     previews: [
       {
-        src: 'assets/designstorms_1.png',
+        src: 'assets/tools/designstorms_1.png',
         alt: 'Design storm input form with map location picker, NOAA depth table, and storm parameters',
         caption: 'Configure location, return period, duration, and distribution method.',
       },
       {
-        src: 'assets/designstorms_2.png',
+        src: 'assets/tools/designstorms_2.png',
         alt: 'Hyetograph and cumulative mass curve charts with storm data table',
         caption: 'Instantly preview intensity charts and export to CSV or DAT.',
       },
@@ -23,17 +23,17 @@ const tools = [
   {
     name: 'Plot Digitizer',
     type: 'Web App',
-    audience: 'Intermediate',
-    tags: ['Data', 'QA/QC', 'Visualization'],
+    platforms: ['PCSWMM', 'InfoWorks ICM', 'HEC-RAS'],
+    tags: ['Data', 'Visualization'],
     description: 'Extract points from legacy figures and scanned plots for model calibration and validation.',
     previews: [
       {
-        src: 'assets/plotdigitizer_1.png',
+        src: 'assets/tools/plotdigitizer_1.png',
         alt: 'Plot Digitizer main interface with calibration panel and blank workspace',
         caption: 'Load any image or PDF and calibrate axes before digitizing.',
       },
       {
-        src: 'assets/plotdigitizer_2.png',
+        src: 'assets/tools/plotdigitizer_2.png',
         alt: 'Parabolic curve loaded in the workspace ready for point capture',
         caption: 'Digitize curves manually or with the Smart Wand auto-trace tool.',
       },
@@ -44,7 +44,7 @@ const tools = [
   {
     name: 'Rainfall Downloader',
     type: 'Web App',
-    audience: 'Beginner',
+    platforms: ['PCSWMM', 'InfoWorks ICM', 'HEC-RAS'],
     tags: ['Rainfall', 'Automation'],
     description: 'Download and organize rainfall data from common sources in model-ready formats.',
     previews: [
@@ -65,12 +65,12 @@ const tools = [
   {
     name: 'SWMM Comparison',
     type: 'Web App',
-    audience: 'Advanced',
-    tags: ['SWMM', 'Benchmarking'],
+    platforms: ['PCSWMM'],
+    tags: ['SWMM'],
     description: 'Compare SWMM model behavior and outcomes across runs to spot meaningful differences.',
     previews: [
       {
-        src: 'assets/swmm_comparison_1.png',
+        src: 'assets/tools/swmm_comparison_1.png',
         alt: 'SWMM Comparison App showing sections panel and map view of a drainage network',
         caption: 'Load two SWMM files and highlight added, removed, or changed elements.',
       },
@@ -81,12 +81,12 @@ const tools = [
   {
     name: 'SWMM5 Report Stats',
     type: 'Third Party Web App',
-    audience: 'Intermediate',
+    platforms: ['PCSWMM'],
     tags: ['SWMM', 'Reporting'],
     description: 'Summarize SWMM report outputs and identify actionable performance indicators.',
     previews: [
       {
-        src: 'assets/swmm5stats_1.png',
+        src: 'assets/tools/swmm5stats_1.png',
         alt: 'SWMM5 Report Analyzer landing page with file upload and quick start options',
         caption: 'Upload a .rpt file or load a sample to explore 52+ report sections.',
       },
@@ -96,8 +96,8 @@ const tools = [
   },
   {
     name: 'SJSWMM5 Manual Search',
-    type: 'Third-Party Web Tool',
-    audience: 'Beginner',
+    type: 'Third Party Web App',
+    platforms: ['PCSWMM'],
     tags: ['SWMM', 'Reference'],
     description: 'Search SWMM5 manual content quickly to find definitions, guidance, and model setup details.',
     previews: [
@@ -111,9 +111,25 @@ const tools = [
     owner: 'Third-party',
   },
   {
+    name: 'SWMM5 vs ICM InfoWorks',
+    type: 'Third Party Web App',
+    platforms: ['PCSWMM', 'InfoWorks ICM'],
+    tags: ['SWMM', 'Reference'],
+    description: 'Educational comparison of how EPA SWMM5 and InfoWorks ICM solve the 1D Saint-Venant equations for hydraulic modeling.',
+    previews: [
+      {
+        src: makePreviewGraphic('Equation Comparison', '1D Saint-Venant formulas', '#556b2f', '#8fbc8f'),
+        alt: 'Interface for comparing hydraulic modeling equations',
+        caption: 'Explore how EPA SWMM5 and InfoWorks ICM solve the 1D Saint-Venant equations.',
+      },
+    ],
+    url: 'https://swmm-icm-st-venant--robertdickinson.replit.app/',
+    owner: 'Third-party',
+  },
+  {
     name: 'Model Run Organizer',
     type: 'Installable Script',
-    audience: 'Intermediate',
+    platforms: ['PCSWMM', 'InfoWorks ICM', 'HEC-RAS'],
     tags: ['Automation', 'QA/QC'],
     description: 'Organize scenarios and model run artifacts for repeatable review and sign-off workflows.',
     previews: [
@@ -134,7 +150,7 @@ const tools = [
   {
     name: 'Time-Series Gap Filler',
     type: 'Downloadable App',
-    audience: 'Advanced',
+    platforms: ['PCSWMM', 'InfoWorks ICM', 'HEC-RAS'],
     tags: ['Data', 'Automation', 'QA/QC'],
     description: 'Diagnose and repair gaps in hydromet time-series prior to model ingestion.',
     previews: [
@@ -150,6 +166,26 @@ const tools = [
       },
     ],
     url: '#',
+    owner: 'Model Toolkit',
+  },
+  {
+    name: 'Flow Data Review Tool',
+    type: 'Web App',
+    platforms: ['PCSWMM', 'InfoWorks ICM', 'HEC-RAS'],
+    tags: ['Data', 'QA/QC'],
+    description: 'A dedicated tool to review and QA/QC flow data.',
+    previews: [],
+    url: '#',
+    owner: 'Model Toolkit',
+  },
+  {
+    name: 'Compare Attributes',
+    type: 'Installable Script',
+    platforms: ['PCSWMM'],
+    tags: ['SWMM', 'QA/QC'],
+    description: 'A PCSWMM installable script that lets the user compare multiple .inp files and export a spreadsheet of differences.',
+    previews: [],
+    url: 'tools/CompareAttributes.pyi',
     owner: 'Model Toolkit',
   },
 ];
@@ -181,7 +217,7 @@ function makePreviewGraphic(title, subtitle, startColor, endColor) {
 const state = {
   search: '',
   types: new Set(),
-  audiences: new Set(),
+  platforms: new Set(),
   tags: new Set(),
 };
 
@@ -190,7 +226,7 @@ const els = {
   resultCount: document.getElementById('resultCount'),
   searchInput: document.getElementById('searchInput'),
   typeFilters: document.getElementById('typeFilters'),
-  audienceFilters: document.getElementById('audienceFilters'),
+  platformFilters: document.getElementById('platformFilters'),
   tagFilters: document.getElementById('tagFilters'),
   clearFilters: document.getElementById('clearFilters'),
   themeToggle: document.getElementById('themeToggle'),
@@ -568,7 +604,7 @@ function makeChip(value, filterSet, container) {
 
 function populateFilters() {
   getUnique('type').forEach((t) => makeChip(t, state.types, els.typeFilters));
-  getUnique('audience').forEach((a) => makeChip(a, state.audiences, els.audienceFilters));
+  getUnique('platforms').forEach((p) => makeChip(p, state.platforms, els.platformFilters));
   getUnique('tags').forEach((tag) => makeChip(tag, state.tags, els.tagFilters));
 }
 
@@ -576,12 +612,12 @@ function matchesFilters(tool) {
   const q = state.search.toLowerCase();
   const inSearch =
     !q ||
-    [tool.name, tool.description, tool.type, tool.audience, ...tool.tags].join(' ').toLowerCase().includes(q);
+    [tool.name, tool.description, tool.type, ...(tool.platforms || []), ...tool.tags].join(' ').toLowerCase().includes(q);
 
   const inType = state.types.size === 0 || state.types.has(tool.type);
-  const inAudience = state.audiences.size === 0 || state.audiences.has(tool.audience);
+  const inPlatform = state.platforms.size === 0 || (tool.platforms && tool.platforms.some((p) => state.platforms.has(p)));
   const inTags = state.tags.size === 0 || tool.tags.some((tag) => state.tags.has(tag));
-  return inSearch && inType && inAudience && inTags;
+  return inSearch && inType && inPlatform && inTags;
 }
 
 function openTool(tool) {
@@ -593,7 +629,7 @@ function openTool(tool) {
     <h3 style="margin-bottom:0.5rem;">${tool.name}</h3>
     <div class="meta-row" style="margin-bottom:0.9rem;">
       <span class="pill">${tool.type}</span>
-      <span class="pill">${tool.audience}</span>
+      ${tool.platforms ? tool.platforms.map(p => `<span class="pill">${p}</span>`).join('') : ''}
       <span class="pill">${tool.owner}</span>
     </div>
     <p class="muted" style="margin-bottom:1rem;">${tool.description}</p>
@@ -671,7 +707,7 @@ function render() {
           <h4>${tool.name}</h4>
           <div class="meta-row" style="margin-bottom:0.3rem;">
             <span class="pill">${tool.type}</span>
-            <span class="pill">${tool.audience}</span>
+            ${tool.platforms ? tool.platforms.map(p => `<span class="pill">${p}</span>`).join('') : ''}
             ${tagPills}
           </div>
           <p>${tool.description}</p>
@@ -682,7 +718,7 @@ function render() {
         </div>
       `;
 
-      const previewSection = createPreviewCarousel(tool.previews || []);
+      const previewSection = createPreviewCarousel(tool);
       if (previewSection) {
         card.prepend(previewSection);
       }
@@ -704,7 +740,15 @@ function render() {
   }
 }
 
-function createPreviewCarousel(previews) {
+function createPreviewCarousel(tool) {
+  const previews = tool.previews && tool.previews.length > 0 ? tool.previews : [
+    {
+      src: makePreviewGraphic(tool.name, 'Preview unavailable', '#3a506b', '#1c2541'),
+      alt: 'Placeholder preview for ' + tool.name,
+      caption: 'Preview image coming soon.',
+    }
+  ];
+
   if (!previews.length) return null;
 
   const wrapper = document.createElement('section');
