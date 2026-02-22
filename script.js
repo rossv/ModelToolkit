@@ -95,6 +95,22 @@ const tools = [
     owner: 'Third-party',
   },
   {
+    name: 'SJSWMM5 Manual Search',
+    type: 'Third-Party Web Tool',
+    audience: 'Beginner',
+    tags: ['SWMM', 'Reference'],
+    description: 'Search SWMM5 manual content quickly to find definitions, guidance, and model setup details.',
+    previews: [
+      {
+        src: makePreviewGraphic('Manual Lookup', 'Search topics and definitions', '#274c77', '#6096ba'),
+        alt: 'Search interface for SWMM5 manual topics and definitions',
+        caption: 'Jump directly to SWMM5 manual sections with targeted keyword search.',
+      },
+    ],
+    url: 'http://sjswmm5manualsearch.com',
+    owner: 'Third-party',
+  },
+  {
     name: 'Model Run Organizer',
     type: 'Installable Script',
     audience: 'Intermediate',
