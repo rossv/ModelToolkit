@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "msedge",
+      "request": "launch",
+      "name": "Launch Edge (Local File)",
+      "file": "${workspaceFolder}/index.html"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome (Local File)",
+      "file": "${workspaceFolder}/index.html"
+    },
+    {
+      "type": "msedge",
+      "request": "launch",
+      "name": "Launch Edge against localhost (Live Server)",
+      "url": "http://localhost:5500",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome against localhost (Live Server)",
+      "url": "http://localhost:5500",
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}

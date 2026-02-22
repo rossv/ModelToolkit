@@ -1,123 +1,176 @@
 <!doctype html>
 <html lang="en" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Model Toolkit Hub</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="bg-scene" aria-hidden="true">
-      <div class="bg-glow bg-glow-1"></div>
-      <div class="bg-glow bg-glow-2"></div>
-      <div id="spriteField" class="sprite-field"></div>
-    </div>
-    <div class="app-shell">
-      <header class="top-bar">
-        <div class="brand-wrap">
-          <img
-            src="assets/logo-icon.png"
-            class="brand-logo"
-            alt="Model Toolkit icon"
-            width="54"
-            height="54"
-          />
-          <div>
-            <p class="eyebrow">Hydrology & Hydraulics</p>
-            <h1>Model Toolkit</h1>
-          </div>
-        </div>
-        <div class="header-actions">
-          <button
-            id="themeToggle"
-            class="theme-toggle"
-            type="button"
-            aria-label="Toggle light and dark mode"
-            aria-pressed="false"
-          >
-            <span class="theme-toggle-track" aria-hidden="true">
-              <span class="theme-toggle-icon sun">☀</span>
-              <span class="theme-toggle-icon moon">☾</span>
-              <span class="theme-toggle-thumb"></span>
-            </span>
-          </button>
-          <button id="authBtn" class="btn btn-primary" aria-label="Sign in (coming soon)">
-            Sign in (Soon)
-          </button>
-          <button
-            id="helpBtn"
-            class="btn btn-secondary"
-            aria-haspopup="dialog"
-            aria-label="Help & Credits"
-            title="Help & Credits"
-          >
-            ⚙
-          </button>
-        </div>
-      </header>
 
-      <section class="hero">
-        <div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model Toolkit Hub</title>
+  <meta name="description"
+    content="A curated directory of H&H tools — web apps, local utilities, and trusted third-party resources for hydrology and hydraulics workflows." />
+  <link rel="icon" type="image/png" href="assets/logo-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <canvas id="subwayCanvas" class="bg-canvas" aria-hidden="true"></canvas>
+  <div class="app-shell">
+
+    <!-- ── Combined Header & Hero ── -->
+    <header class="hero main-hero">
+      <div class="header-actions hero-absolute-actions">
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle light and dark mode"
+          title="Toggle Theme">
+          <!-- Sun icon -->
+          <span class="theme-toggle-icon-wrap sun-wrap" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+          </span>
+          <!-- Moon icon -->
+          <span class="theme-toggle-icon-wrap moon-wrap" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401">
+              </path>
+            </svg>
+          </span>
+        </button>
+        <button id="authBtn" class="btn btn-primary" aria-label="Sign in (coming soon)">
+          Sign in
+        </button>
+        <button id="helpBtn" class="btn btn-secondary icon-btn" aria-haspopup="dialog" aria-label="Help &amp; Credits"
+          title="Help &amp; Credits">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="gear-icon">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+            </path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-brand-splash">
+          <div class="logo-glow"></div>
+          <img src="assets/logo-icon.png" class="featured-logo" alt="Model Toolkit icon" width="128" height="128" />
+        </div>
+        <div class="hero-text-block">
+          <p class="eyebrow">Hydrology &amp; Hydraulics</p>
+          <h1>Model Toolkit</h1>
           <h2>Collection of useful tools for H&amp;H workflows</h2>
-          <p>
+          <p class="hero-desc">
             Explore web apps, downloadable utilities, installable scripts, and trusted third-party resources.
             Built for everyone from first-time modelers to advanced engineers.
           </p>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <strong id="heroToolCount">7</strong>
+              <span>Tools Available</span>
+            </div>
+            <div class="hero-stat">
+              <strong>3</strong>
+              <span>Categories</span>
+            </div>
+          </div>
         </div>
+      </div>
+    </header>
+
+    <!-- ── Main layout ── -->
+    <main class="layout">
+
+      <!-- Filters sidebar -->
+      <aside class="filters-panel" aria-label="Tool filters">
+        <div class="search-block">
+          <label for="searchInput">Search tools</label>
+          <div class="search-wrapper">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input id="searchInput" type="search" placeholder="Try: rainfall, SWMM, digitizer…" />
+          </div>
+        </div>
+
+        <div class="filter-divider"></div>
+
+        <div class="filter-group">
+          <h3>Type</h3>
+          <div id="typeFilters" class="chips"></div>
+        </div>
+
+        <div class="filter-group">
+          <h3>Audience</h3>
+          <div id="audienceFilters" class="chips"></div>
+        </div>
+
+        <div class="filter-group">
+          <h3>Discipline</h3>
+          <div id="tagFilters" class="chips"></div>
+        </div>
+
+        <div class="filter-divider"></div>
+
+        <button id="clearFilters" class="btn btn-ghost full-width">Clear all filters</button>
+      </aside>
+
+      <!-- Content area -->
+      <section class="content-panel" aria-live="polite">
+        <div class="content-head">
+          <h3>Tool Directory by Section</h3>
+          <span class="result-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true">
+              <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            <span id="resultCount">0</span> tools
+          </span>
+        </div>
+        <div id="toolSections" class="tool-sections"></div>
       </section>
+    </main>
+  </div>
 
-      <main class="layout">
-        <aside class="filters-panel" aria-label="Tool filters">
-          <div class="search-block">
-            <label for="searchInput">Search tools</label>
-            <input id="searchInput" type="search" placeholder="Try: rainfall, SWMM, digitizer..." />
-          </div>
+  <!-- ── Tool Detail Modal ── -->
+  <dialog id="toolModal" class="modal">
+    <article class="modal-card">
+      <button class="close-btn" id="closeToolModal" aria-label="Close">×</button>
+      <div id="modalBody"></div>
+    </article>
+  </dialog>
 
-          <div class="filter-group">
-            <h3>Type</h3>
-            <div id="typeFilters" class="chips"></div>
-          </div>
+  <!-- ── Help Modal ── -->
+  <dialog id="helpModal" class="modal">
+    <article class="modal-card help-modal-card">
+      <button class="close-btn" id="closeHelpModal" aria-label="Close">×</button>
 
-          <div class="filter-group">
-            <h3>Audience</h3>
-            <div id="audienceFilters" class="chips"></div>
-          </div>
+      <div class="modal-tabs">
+        <button class="tab-btn active" data-tab="purpose">Purpose</button>
+        <button class="tab-btn" data-tab="changelog">Changelogs</button>
+        <button class="tab-btn" data-tab="credits">Credits</button>
+      </div>
 
-          <div class="filter-group">
-            <h3>Discipline</h3>
-            <div id="tagFilters" class="chips"></div>
-          </div>
-
-          <button id="clearFilters" class="btn btn-ghost full-width">Clear filters</button>
-        </aside>
-
-        <section class="content-panel" aria-live="polite">
-          <div class="content-head">
-            <h3>Tool Directory by Section</h3>
-            <p><span id="resultCount">0</span> tools available</p>
-          </div>
-          <div id="toolSections" class="tool-sections"></div>
-        </section>
-      </main>
-    </div>
-
-    <dialog id="toolModal" class="modal">
-      <article class="modal-card">
-        <button class="close-btn" id="closeToolModal" aria-label="Close">×</button>
-        <div id="modalBody"></div>
-      </article>
-    </dialog>
-
-    <dialog id="helpModal" class="modal">
-      <article class="modal-card">
-        <button class="close-btn" id="closeHelpModal" aria-label="Close">×</button>
-        <h3>Help & Credits</h3>
+      <div class="tab-content active" id="tab-purpose">
+        <h3>Purpose</h3>
         <p>
           The Model Toolkit is a curated directory to help users quickly discover H&H tools by purpose,
           platform, and experience level.
@@ -127,10 +180,27 @@
           <li>Current access is open. Planned enterprise authentication: Okta and Azure AD.</li>
           <li>Includes tools created by the Model Toolkit maintainer and trusted third-party resources.</li>
         </ul>
-        <p class="muted">Credits: Product vision and tool ecosystem by repository owner and contributors.</p>
-      </article>
-    </dialog>
+      </div>
 
-    <script src="script.js"></script>
-  </body>
+      <div class="tab-content" id="tab-changelog">
+        <h3>Changelogs</h3>
+        <ul class="changelog-list">
+          <li><strong>v1.1.0</strong> — Premium UI/UX overhaul with improved visual hierarchy, hover effects, and
+            responsive layout.</li>
+          <li><strong>v1.0.1</strong> — Added new dynamic tabs for the help menu.</li>
+          <li><strong>v1.0.0</strong> — Initial release with core directory features and filtering.</li>
+        </ul>
+      </div>
+
+      <div class="tab-content" id="tab-credits">
+        <h3>Credits</h3>
+        <p><strong>Author:</strong> Ross Volkwein</p>
+        <p class="muted">Product vision, tool ecosystem, and development by the repository owner and contributors.</p>
+      </div>
+    </article>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+
 </html>
