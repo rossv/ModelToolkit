@@ -7,12 +7,12 @@ const tools = [
     description: 'Generate design storm hyetographs quickly with defensible assumptions and clean exports.',
     previews: [
       {
-        src: 'assets/tools/designstorms_1.png',
+        src: 'assets/tools/designstorms_1.webp',
         alt: 'Design storm input form with map location picker, NOAA depth table, and storm parameters',
         caption: 'Configure location, return period, duration, and distribution method.',
       },
       {
-        src: 'assets/tools/designstorms_2.png',
+        src: 'assets/tools/designstorms_2.webp',
         alt: 'Hyetograph and cumulative mass curve charts with storm data table',
         caption: 'Instantly preview intensity charts and export to CSV or DAT.',
       },
@@ -28,12 +28,12 @@ const tools = [
     description: 'Extract points from legacy figures and scanned plots for model calibration and validation.',
     previews: [
       {
-        src: 'assets/tools/plotdigitizer_1.png',
+        src: 'assets/tools/plotdigitizer_1.webp',
         alt: 'Plot Digitizer main interface with calibration panel and blank workspace',
         caption: 'Load any image or PDF and calibrate axes before digitizing.',
       },
       {
-        src: 'assets/tools/plotdigitizer_2.png',
+        src: 'assets/tools/plotdigitizer_2.webp',
         alt: 'Parabolic curve loaded in the workspace ready for point capture',
         caption: 'Digitize curves manually or with the Smart Wand auto-trace tool.',
       },
@@ -70,7 +70,7 @@ const tools = [
     description: 'Compare SWMM model behavior and outcomes across runs to spot meaningful differences.',
     previews: [
       {
-        src: 'assets/tools/swmm_comparison_1.png',
+        src: 'assets/tools/swmm_comparison_1.webp',
         alt: 'SWMM Comparison App showing sections panel and map view of a drainage network',
         caption: 'Load two SWMM files and highlight added, removed, or changed elements.',
       },
@@ -86,7 +86,7 @@ const tools = [
     description: 'Summarize SWMM report outputs and identify actionable performance indicators.',
     previews: [
       {
-        src: 'assets/tools/swmm5stats_1.png',
+        src: 'assets/tools/swmm5stats_1.webp',
         alt: 'SWMM5 Report Analyzer landing page with file upload and quick start options',
         caption: 'Upload a .rpt file or load a sample to explore 52+ report sections.',
       },
