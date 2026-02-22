@@ -22,7 +22,7 @@ const tools = [
   },
   {
     name: 'Plot Digitizer',
-    type: 'Downloadable App',
+    type: 'Web App',
     audience: 'Intermediate',
     tags: ['Data', 'QA/QC', 'Visualization'],
     description: 'Extract points from legacy figures and scanned plots for model calibration and validation.',
@@ -43,7 +43,7 @@ const tools = [
   },
   {
     name: 'Rainfall Downloader',
-    type: 'Installable Script',
+    type: 'Web App',
     audience: 'Beginner',
     tags: ['Rainfall', 'Automation'],
     description: 'Download and organize rainfall data from common sources in model-ready formats.',
@@ -64,7 +64,7 @@ const tools = [
   },
   {
     name: 'SWMM Comparison',
-    type: 'Third-Party Web Tool',
+    type: 'Web App',
     audience: 'Advanced',
     tags: ['SWMM', 'Benchmarking'],
     description: 'Compare SWMM model behavior and outcomes across runs to spot meaningful differences.',
@@ -80,7 +80,7 @@ const tools = [
   },
   {
     name: 'SWMM5 Report Stats',
-    type: 'Third-Party Web Tool',
+    type: 'Third Party Web App',
     audience: 'Intermediate',
     tags: ['SWMM', 'Reporting'],
     description: 'Summarize SWMM report outputs and identify actionable performance indicators.',
@@ -206,7 +206,7 @@ const THEME_KEY = 'model-toolkit-theme';
 const SECTION_DEFS = [
   {
     key: 'web',
-    title: 'Web Tools',
+    title: 'Web Apps',
     icon: '🌐',
     subtitle: 'Browser-based tools with instant access and no local install.',
     className: 'section-web',
@@ -224,12 +224,12 @@ const SECTION_DEFS = [
   },
   {
     key: 'third-party',
-    title: 'Third-Party Tools',
+    title: 'Third Party Web Apps',
     icon: '🔗',
     subtitle: 'Trusted external tools maintained by partners and the wider community.',
     className: 'section-third-party',
-    matchesTool: (tool) => tool.type === 'Third-Party Web Tool',
-    matchesTypeFilter: (type) => type === 'Third-Party Web Tool',
+    matchesTool: (tool) => tool.type === 'Third Party Web App',
+    matchesTypeFilter: (type) => type === 'Third Party Web App',
   },
 ];
 
