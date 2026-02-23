@@ -267,6 +267,11 @@ const els = {
   toolModal: document.getElementById('toolModal'),
   closeToolModal: document.getElementById('closeToolModal'),
   modalBody: document.getElementById('modalBody'),
+  submitIdeaBtn: document.getElementById('submitIdeaBtn'),
+  submitModal: document.getElementById('submitModal'),
+  closeSubmitModal: document.getElementById('closeSubmitModal'),
+  submitIdeaForm: document.getElementById('submitIdeaForm'),
+  submittedTableBody: document.getElementById('submittedTableBody'),
 };
 
 const helpTabs = document.querySelectorAll('.tab-btn');
@@ -883,6 +888,71 @@ els.authBtn.addEventListener('click', () => {
 els.helpBtn.addEventListener('click', () => els.helpModal.showModal());
 els.closeHelpModal.addEventListener('click', () => els.helpModal.close());
 els.closeToolModal.addEventListener('click', () => els.toolModal.close());
+
+/* ── Submit Idea Modal Logic ── */
+const submitTabs = document.querySelectorAll('.submit-tab-btn');
+const submitContents = document.querySelectorAll('#submitModal .tab-content');
+
+submitTabs.forEach((tab) => {
+  tab.addEventListener('click', () => {
+    submitTabs.forEach((t) => t.classList.remove('active'));
+    submitContents.forEach((c) => c.classList.remove('active'));
+
+    tab.classList.add('active');
+    document.getElementById(`tab-${tab.dataset.tab}`).classList.add('active');
+  });
+});
+
+els.submitIdeaBtn.addEventListener('click', () => {
+  renderSubmittedIdeas();
+  els.submitModal.showModal();
+});
+els.closeSubmitModal.addEventListener('click', () => els.submitModal.close());
+
+els.submitIdeaForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const type = document.getElementById('submitType').value;
+  const title = document.getElementById('submitTitle').value;
+  const link = document.getElementById('submitLink').value;
+  const desc = document.getElementById('submitDesc').value;
+
+  const submissions = JSON.parse(localStorage.getItem('model-toolkit-submissions') || '[]');
+  submissions.unshift({
+    type, title, link, desc,
+    date: new Date().toLocaleDateString()
+  });
+  localStorage.setItem('model-toolkit-submissions', JSON.stringify(submissions));
+
+  els.submitIdeaForm.reset();
+
+  // switch to list tab
+  submitTabs.forEach((t) => t.classList.remove('active'));
+  submitContents.forEach((c) => c.classList.remove('active'));
+  document.querySelector('.submit-tab-btn[data-tab="submitted-list"]').classList.add('active');
+  document.getElementById('tab-submitted-list').classList.add('active');
+
+  renderSubmittedIdeas();
+});
+
+function renderSubmittedIdeas() {
+  const submissions = JSON.parse(localStorage.getItem('model-toolkit-submissions') || '[]');
+  if (submissions.length === 0) {
+    els.submittedTableBody.innerHTML = '<tr><td colspan="3" style="padding:1rem; text-align:center; color:var(--text-muted);">No submissions yet.</td></tr>';
+    return;
+  }
+
+  els.submittedTableBody.innerHTML = submissions.map(sub => `
+    <tr style="border-bottom:1px solid var(--border-soft);">
+      <td style="padding:0.75rem 0.5rem;"><span class="pill" style="white-space:nowrap;">${sub.type}</span></td>
+      <td style="padding:0.75rem 0.5rem;">
+        <div style="font-weight:600; margin-bottom:0.2rem; color:var(--text);">${sub.title}</div>
+        ${sub.link ? `<a href="${sub.link}" target="_blank" style="font-size:0.8rem; color:var(--brand); text-decoration:underline;">${sub.link}</a>` : ''}
+        <div style="font-size:0.8rem; color:var(--text-soft); margin-top:0.2rem; line-height:1.4;">${sub.desc}</div>
+      </td>
+      <td style="padding:0.75rem 0.5rem; color:var(--text-muted); font-size:0.8rem; white-space:nowrap; vertical-align:top;">${sub.date}</td>
+    </tr>
+  `).join('');
+}
 
 populateFilters();
 initTheme();

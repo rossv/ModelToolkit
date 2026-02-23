@@ -49,6 +49,9 @@
             </svg>
           </span>
         </button>
+        <button id="submitIdeaBtn" class="btn btn-secondary" aria-haspopup="dialog" aria-label="Submit Idea or Tool">
+          Submit Idea
+        </button>
         <button id="authBtn" class="btn btn-primary" aria-label="Sign in (coming soon)">
           Sign in
         </button>
@@ -197,6 +200,68 @@
         <h3>Credits</h3>
         <p><strong>Author:</strong> Ross Volkwein</p>
         <p class="muted">Product vision, tool ecosystem, and development by the repository owner and contributors.</p>
+      </div>
+    </article>
+  </dialog>
+
+  <!-- ── Submit Idea/Tool Modal ── -->
+  <dialog id="submitModal" class="modal">
+    <article class="modal-card">
+      <button class="close-btn" id="closeSubmitModal" aria-label="Close">×</button>
+
+      <div class="modal-tabs">
+        <button class="submit-tab-btn tab-btn active" data-tab="submit-new">Submit New</button>
+        <button class="submit-tab-btn tab-btn" data-tab="submitted-list">Submitted</button>
+      </div>
+
+      <div class="tab-content active" id="tab-submit-new">
+        <h3 style="margin-bottom: 1rem;">Submit an Idea or Tool</h3>
+        <form id="submitIdeaForm" style="display:flex; flex-direction:column; gap:1rem;">
+          <div style="display:flex; flex-direction:column; gap:0.4rem;">
+            <label for="submitType" style="font-weight:600; font-size:0.85rem; color:var(--text-soft);">Type</label>
+            <select id="submitType" required
+              style="padding:0.6rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--surface-2); color:var(--text); font-family:inherit;">
+              <option value="Idea">Idea for a new tool</option>
+              <option value="Third-Party Tool">Third-Party Tool</option>
+            </select>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.4rem;">
+            <label for="submitTitle" style="font-weight:600; font-size:0.85rem; color:var(--text-soft);">Title</label>
+            <input type="text" id="submitTitle" required placeholder="e.g., HEC-RAS Mapper Utility"
+              style="padding:0.6rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--surface-2); color:var(--text); font-family:inherit;" />
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.4rem;">
+            <label for="submitLink" style="font-weight:600; font-size:0.85rem; color:var(--text-soft);">Link
+              (Optional)</label>
+            <input type="url" id="submitLink" placeholder="https://..."
+              style="padding:0.6rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--surface-2); color:var(--text); font-family:inherit;" />
+          </div>
+          <div style="display:flex; flex-direction:column; gap:0.4rem;">
+            <label for="submitDesc"
+              style="font-weight:600; font-size:0.85rem; color:var(--text-soft);">Description</label>
+            <textarea id="submitDesc" required rows="3" placeholder="Describe the tool or idea..."
+              style="padding:0.6rem; border-radius:var(--radius-sm); border:1px solid var(--border); background:var(--surface-2); color:var(--text); font-family:inherit; resize:vertical;"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin-top:0.5rem;">Submit</button>
+        </form>
+      </div>
+
+      <div class="tab-content" id="tab-submitted-list">
+        <h3 style="margin-bottom: 1rem;">Previously Submitted</h3>
+        <div style="max-height: 400px; overflow-y: auto;">
+          <table style="width:100%; text-align:left; border-collapse:collapse; font-size:0.9rem;">
+            <thead>
+              <tr style="border-bottom:2px solid var(--border-soft);">
+                <th style="padding:0.5rem; color:var(--text-muted); font-weight:600; width:80px;">Type</th>
+                <th style="padding:0.5rem; color:var(--text-muted); font-weight:600;">Details</th>
+                <th style="padding:0.5rem; color:var(--text-muted); font-weight:600; width:90px;">Date</th>
+              </tr>
+            </thead>
+            <tbody id="submittedTableBody">
+              <!-- JS injected -->
+            </tbody>
+          </table>
+        </div>
       </div>
     </article>
   </dialog>
