@@ -141,6 +141,22 @@ const tools = [
     owner: 'Third-party',
   },
   {
+    name: 'Rules for Responsible Modeling',
+    type: 'Third Party Web App',
+    platforms: ['PCSWMM', 'InfoWorks ICM', 'HEC-RAS'],
+    tags: ['Reference', 'QA/QC'],
+    description: 'Practical guidance and standards to improve transparency, quality, and accountability in modeling practice.',
+    previews: [
+      {
+        src: makePreviewGraphic('Responsible Modeling', 'Guidance, rules, and best practices', '#4a148c', '#7b1fa2'),
+        alt: 'Rules for Responsible Modeling web app resource card',
+        caption: 'Access concise rules and recommendations for responsible modeling workflows.',
+      },
+    ],
+    url: 'https://rulesforresponsiblemodeling.lovable.app/',
+    owner: 'Third-party',
+  },
+  {
     name: 'SWMM5 vs ICM InfoWorks',
     type: 'Third Party Web App',
     platforms: ['PCSWMM', 'InfoWorks ICM'],
@@ -958,4 +974,3 @@ populateFilters();
 initTheme();
 initSubwayBackground();
 render();
-
